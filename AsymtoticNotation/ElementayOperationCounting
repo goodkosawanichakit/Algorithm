@@ -1,0 +1,106 @@
+1 int power(int x, int n)
+  {
+2   int product = 1;
+3   for (int i = 1; i <= n; i++) {
+4     product *= x;
+5   }
+6   return product;
+  }
+
+Elementary Operation Counting:
+Operation | Time | Repetitions
+    1        t1         1
+    2        t2         1
+    3        t3       n + 1
+    4        t4         n
+    5        t5         n
+    6        t6         1
+
+T(n) = t1 + t2 + t3(n + 1) + t4n + t5n + t6
+T(n) = t1 + t2 + t3 + t6 + t3n + t4n + t5n
+T(n) = n(t3 + t4 + t5) + t1 + t2 + t3 + t6
+T(n) = 3n + 4
+T(n) = O(n)
+
+
+1 void mystery(int x, int n)
+  {
+2   int s = 0;
+3   for (int i = 1; i <= n; i++) {
+4     for (int j = 1; j <= n; j++) {
+5       s += 1;
+6     }
+7   }
+  }
+
+Elementary Operation Counting:
+Operation | Time | Repetitions
+    1        t1         1
+    2        t2         1
+    3        t3       n + 1
+    4        t4     n(n + 1)
+    5        t5       n * n
+    6        t6       n * n 
+    7        t7         n 
+
+T(n) = t1 + t2 + t3(n + 1) + t4(n^2 + n) + t5n^2 + t6n^2 + t7n
+T(n) = n^2(t4 + t5 + t6) + n(t3 + t4 + t7) + t1 + t2 
+T(n) = 3n^2 + 3n + 2
+T(n) = O(n^2)
+
+
+1 int sum(int n) 
+  {
+2   int s = 0;
+3   int i = 1;
+4   while (i <= n) {
+5     s += 1;
+6     i += 1;
+    }
+7   return s;
+  }
+
+Elementary Operation Counting:
+Operation | Time | Repetitions
+    1        t1         1
+    2        t2         1
+    3        t3         1
+    4        t4       n + 1
+    5        t5         n
+    6        t6         n 
+    7        t7         1
+
+T(n) = t1 + t2 + t3 + t4(n + 1) + t5n + t6n + t7 
+T(n) = t1 + t2 + t3 + t4 + t7 + n(t4 + t5 + t6)
+T(n) = 3n + 5
+T(n) = O(n)
+
+
+1 void product_matrix(int a[][100], int b[][100], int c[][100], int m, int n, int p) 
+  {
+2   for (int i = 0; i < m; i++) {
+3     for (int j = 0; j < p; j++) {
+4       c[i][j] = 0;
+5       for (int k = 0; k < n; k++) {
+6         c[i][j] = c[i][j] + (a[i][k] * b[k][j]);
+        }
+      }
+    }
+  }
+
+Elementary Operation Counting:
+Operation | Time | Repetitions
+    1        t1         1
+    2        t2       m + 1
+    3        t3     m(p + 1)
+    4        t4        mp 
+    5        t5   m(p(n + 1))
+    6        t6        mpn 
+
+T(n) = t1 + t2(m + 1) + t3m(p + 1) + t4mp + t5m(p(n + 1))+ t6mpn
+T(n) = t1 + t2m + t2 + t3mp + t3m + t4mp + t5m(pn + p) + t6mpn
+T(n) = t1 + t2 + t2m + t3m + t3mp + t4mp + t5mp + t5mpn + t6mpn 
+T(n) = mpn(t5 + t6) + mp(t3 + t4 + t5) + m(t2 + t3) + t1 + t2 
+T(n) = 2mpn + 3mp + 2m + 2
+T(n) = O(mpn)
+
