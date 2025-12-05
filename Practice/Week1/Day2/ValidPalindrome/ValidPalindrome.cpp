@@ -9,15 +9,16 @@ bool isPalindrome(string s) {
   t = s.length() - 1;
 
   while (h < t) {
-    while (!isalnum(s[h]))
+    while (h < t && !isalnum(s[h]))
       h++;
-    while (!isalnum(s[t]))
+    while (h < t && !isalnum(s[t]))
       t--;
-
     if (tolower(s[h]) != tolower(s[t]))
       return false;
-    h++;
-    t--;
+    else {
+      h++;
+      t--;
+    }
   }
   return true;
 }
